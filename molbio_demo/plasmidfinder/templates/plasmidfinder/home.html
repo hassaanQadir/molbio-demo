@@ -1,0 +1,22 @@
+
+<!-- plasmidfinder/templates/plasmidfinder/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Text</title>
+</head>
+<body>
+    <h1>Enter Input Here</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="input_text" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if reversed_text %}
+        <h2>Reversed Text: {{ reversed_text }}</h2>
+    {% endif %}
+</body>
+</html>
