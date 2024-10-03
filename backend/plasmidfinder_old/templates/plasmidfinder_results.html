@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2E2E2E;
+            margin-bottom: 20px;
+        }
+
+        .results_dictionary-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            text-align: left;
+        }
+
+        .results_dictionary-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .results_dictionary-title a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .results_dictionary-title a:hover {
+            text-decoration: underline;
+        }
+
+        .results_dictionary-body {
+            font-size: 16px;
+        }
+
+        .simple-results_dictionary {
+            font-size: 18px;
+            margin-top: 10px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .final_output_string-container {
+        margin-bottom: 30px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9; /* subtle background color */
+        text-align: left;
+        }
+
+        .final_output_string-body {
+            font-size: 18px;
+            font-weight: 500; /* increased font weight */
+            color: #2E2E2E; /* slightly darker font color */
+            line-height: 1.6; /* improved line height for readability */
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Find Your Plasmid Here</h1>
+    {% if final_output_string %}
+        <div class="final_output_string-container">
+            <div class="final_output_string-body">{{ final_output_string }}</div>
+        </div>
+    {% endif %}
+
+    {% if results_dictionary %}
+        {% if results_dictionary.items %}
+            {% for key, value in results_dictionary.items %}
+                <div class="results_dictionary-container">
+                    <div class="results_dictionary-title"><a href="{{ value.href }}">{{ value.title }}</a></div>
+                    <div class="results_dictionary-body">{{ value.body }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="simple-results_dictionary">{{ results_dictionary }}</div>
+        {% endif %}
+
+    {% if addgene_genbank %}
+        <div class="final_output_string-container">
+            <div class="final_output_string-body">{{ addgene_genbank }}</div>
+        </div>
+    {% endif %}
+
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+</body>
+</html>
